@@ -21,7 +21,7 @@ create table User(
 	UserID		VARCHAR(255) NOT NULL,
 	Location	VARCHAR(255),
 	Country		VARCHAR(255),	
-	Rating		INT,
+	Rating		INT NOT NULL,
 	PRIMARY KEY (UserID)
 );
 
