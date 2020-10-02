@@ -4,24 +4,25 @@ drop table if exists Bid;
 drop table if exists Category;
 
 create table Item(
-	ItemID		INT NOT NULL,
-	Name		VARCHAR(255) NOT NULL,
-	Description	VARCHAR NOT NULL,
-	Seller		VARCHAR(255) NOT NULL,
-	Started		DATE NOT NULL,
-	Ends		DATE NOT NULL,
-	Currently	DOUBLE NOT NULL,
-	Buy_Price	DOUBLE,
-	First_Bid	DOUBLE NOT NULL, 
-	Number_of_Bids  INT NOT NULL,
-	PRIMARY KEY (ItemID),
+    ItemID INT NOT NULL UNIQUE,
+	Name VARCHAR(255) NOT NULL,
+	Description	VARCHAR,
+	Seller VARCHAR(255) NOT NULL,
+	Started	DATE NOT NULL,
+	Ends DATE NOT NULL,
+	Currently DOUBLE NOT NULL,
+	Buy_Price DOUBLE,
+	First_Bid DOUBLE NOT NULL, 
+	Number_of_Bids INT NOT NULL,
+    FOREIGN KEY (Seller) REFERENCES User(UserID),
+	PRIMARY KEY (ItemID)
 );
 
 create table User(
 	UserID		VARCHAR(255) NOT NULL,
+    Rating		INT NOT NULL,
 	Location	VARCHAR(255),
 	Country		VARCHAR(255),	
-	Rating		INT NOT NULL,
 	PRIMARY KEY (UserID)
 );
 
@@ -31,11 +32,11 @@ create table Bid(
 	Time		DATETIME NOT NULL,
 	Amount		DOUBLE NOT NULL,
 	FOREIGN KEY (ItemID) REFERENCES Item(ItemID),
-	FOREIGN KEY (UserID) REFERENCES User(UserID),
+	FOREIGN KEY (UserID) REFERENCES User(UserID)
 );
 
 create table Category(
-	ItemID		INT NOT NULL,
+    ItemID      INT NOT NULL,
 	Name	 	VARCHAR(255),
-	FOREIGN KEY (ItemID) REFERENCES Item(ItemID),
+	FOREIGN KEY (ItemID) REFERENCES Item(ItemID)
 );

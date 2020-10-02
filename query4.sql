@@ -1,0 +1,1 @@
+SELECT ItemID FROM (SELECT MAX(Currently), ItemID FROM Item)
